@@ -38,6 +38,11 @@ def getVLCURL(html):
     sFlvUrlSuffix = gameStreamInfoList_json['sFlvUrlSuffix']
     sFlvAntiCode = gameStreamInfoList_json['sFlvAntiCode']
 
+    sFlvAntiCode = sFlvAntiCode.replace('amp;','')
+    # while(sFlvAntiCode.find("&amp;")):
+    #     pos = sFlvAntiCode.find("amp;")
+    #     sFlvAntiCode = sFlvAntiCode[ : pos] + sFlvAntiCode[(pos + 4):]
+
     vlcURL = sFlvUrl + '/' + sStreamName + '.' + sFlvUrlSuffix + '?' + sFlvAntiCode
     # 将字符串中的下划线替换为空格
     vlcURL = vlcURL.replace('_', ' ')
@@ -51,23 +56,13 @@ def getVLCURL(html):
 
 
 if __name__ == "__main__":
-    url = "https://www.huya.com/"
-    roomID = input("请输入房间名称： ")
-    url += roomID
+    url = "https://www.huya.com/833718"
+    #roomID = input("请输入房间名称： ")
+    #url += roomID
     html = getHTML(url)
     print(getVLCURL(html))
 
 
 
 
-# # json字符串转换为字典类型
-# json_str2 = '{"programers":[ {"firstName":"Breet","lastName":"MMM","email":"XXX"},'\
-#             '{"firstName":"Breet","lastName":"MMM","email":"XXX"}], ' \
-#             '"author": [{"firstName": "su", "lastName": "yang", "email": "XXX"},'\
-#             '{"firstName": "Breet", "lastName": "MMM", "email": "XXX"}]}'
 
-# print(type(json_str2))
-
-# data2 = json.loads(json_str2)
-
-# print(type(data2))
